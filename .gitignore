@@ -1,0 +1,31 @@
+# R / package build artifacts
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+.Rapp.history
+src/*.o
+src/*.so
+src/*.dll
+*.tar.gz
+pals.Rcheck/
+..Rcheck/
+/docs/            # pkgdown output (built site; ignore unless deploying via git)
+/doc/
+/Meta/
+inst/doc/
+revdep/
+
+# JOSS paper build artifacts
+paper/paper.pdf
+paper/*.jats
+paper/media/
+
+# OS / editor
+.DS_Store
+*~
+.vscode/
+
+# Machine-specific local env
+.Renviron
