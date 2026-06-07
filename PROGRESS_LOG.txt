@@ -1,0 +1,42 @@
+PALS R PACKAGE — DEVELOPMENT PROGRESS LOG
+==========================================
+
+Session resumed: 2026-06-06
+
+=== INITIAL ASSESSMENT (2026-06-06) ===
+Found existing package at /Users/bbd5087/Documents/GitHub/pals.
+GitHub remote: https://github.com/bdesmarais/pals.git
+Only 1 commit so far (research/guidance docs scaffolding); R/, src/, man/,
+DESCRIPTION, NAMESPACE are UNTRACKED (previous session built but never committed them).
+
+What exists and looks complete:
+  - DESCRIPTION, NAMESPACE, LICENSE (MIT)
+  - R/: pals-package, events, params, distance, project, estimate, simulate, RcppExports
+  - src/: haversine.cpp, project.cpp, RcppExports.cpp
+  - man/: 11 .Rd files (roxygen-generated)
+  - docs-research/ (4 notes), ALGORITHM.md, DESIGN.md, DECISIONS.md, PLAN.md
+
+What is MISSING (to do):
+  - tests/ (none)
+  - vignettes/ (none)
+  - paper/ (JOSS paper, none)
+  - data/ (nigeria_sim referenced in plan, not built)
+  - bootstrap_pals / pool_rubin (referenced in DESCRIPTION + @seealso, NOT implemented)
+  - README, NEWS, community files, CI
+  - covr package not installed (only a Suggests; skip)
+
+Environment: R 4.6.0; devtools, roxygen2, Rcpp, testthat, ggplot2, knitr,
+rmarkdown, mice all installed. gh authenticated as bdesmarais.
+
+PLAN FOR THIS SESSION:
+  1. Build + load package, fix compile/load bugs.
+  2. Commit current built code (it was never committed).
+  3. Run R CMD check; fix errors/warnings.
+  4. Implement bootstrap_pals + pool_rubin (core method component).
+  5. Add data/nigeria_sim.
+  6. Write tests (testthat 3e).
+  7. Write vignette.
+  8. Write README + community files + NEWS.
+  9. Write JOSS paper (paper/paper.md + paper.bib).
+  10. CI (GitHub Actions). Final check. Push throughout.
+
