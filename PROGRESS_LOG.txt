@@ -105,3 +105,18 @@ Follow-ups for authors before formal submission:
   and NAMESPACE/man via roxygen (palsr-package.Rd). Renamed vignette/bib and
   R/palsr-package.R files.
 - R CMD check on palsr_0.1.0.tar.gz: Status: OK (0/0/0).
+
+=== JOSS PAPER IN LATEX (2026-06-13) ===
+- JOSS's canonical source is paper.md (Markdown); JOSS compiles it to PDF via their
+  official LaTeX template (no hand-written .tex is submitted). Used that template to
+  produce a LaTeX version + PDF locally.
+- Vendored the official JOSS LaTeX template + logo (openjournals/whedon) under
+  paper/.joss/. Patched its CSL/bibliography block to be compatible with pandoc 3.8
+  (added \citeproctext/\citeproc defs; swapped CSLReferences to pandoc-3 list-based
+  2-arg env) so \bibitem entries compile.
+- Added paper/build_pdf.sh (reproducible pandoc + xelatex build) and paper/README.md
+  (explains canonical paper.md vs generated paper.tex/paper.pdf, plus the official
+  `docker run openjournals/inara` route).
+- Built paper/paper.tex and paper/paper.pdf: correct JOSS layout — title, author
+  affiliation superscripts (Desmarais^1, Kim^2, Liu^3), JOSS footer, inline citations,
+  and a formatted reference list. Tracked both in git for review; LaTeX aux files ignored.
