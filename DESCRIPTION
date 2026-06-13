@@ -30,8 +30,7 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    mice,
-    covr
+    mice
 URL: https://github.com/bdesmarais/pals
 BugReports: https://github.com/bdesmarais/pals/issues
 VignetteBuilder: knitr

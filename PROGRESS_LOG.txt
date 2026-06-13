@@ -40,3 +40,11 @@ PLAN FOR THIS SESSION:
   9. Write JOSS paper (paper/paper.md + paper.bib).
   10. CI (GitHub Actions). Final check. Push throughout.
 
+
+=== SESSION 2026-06-13 ===
+- Verified env: R 4.6.0; devtools, roxygen2, testthat, knitr, rmarkdown, mice all
+  present (covr absent but no longer in Suggests). pandoc available via RSTUDIO_PANDOC.
+- Built data/nigeria_sim.rda (1500 events, 25 actors, 2000-2016) via data-raw/nigeria_sim.R.
+- Regenerated roxygen docs: NAMESPACE now exports bootstrap_pals, pool_rubin; added
+  bootstrap_pals.Rd, pool_rubin.Rd, nigeria_sim.Rd. Fixed [pals_fit] doc link.
+- Committed bootstrap + data + regenerated docs; pushed core commit to origin.
