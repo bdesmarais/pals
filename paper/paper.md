@@ -40,8 +40,8 @@ by @kim2023pals, fills this gap by estimating where a mobile actor effectively
 interactions, and using these projected locations to model the distance between
 --- and the probability of interaction among --- pairs of actors.
 
-`palsr` is an R package that implements the complete PALS workflow: constructing
-and validating dyadic event data, estimating the smoothing parameters by
+`palsr` is an R package [@rcoreteam] that implements the complete PALS workflow:
+constructing and validating dyadic event data, estimating the smoothing parameters by
 minimizing great-circle prediction error, projecting actor locations at
 arbitrary times, building the dyadic distance covariates used in downstream
 interaction models, and quantifying uncertainty through a nonparametric
@@ -60,11 +60,21 @@ is the distance between them [@gleditsch2001; @ward2007]. When actors are
 states with fixed capitals or centroids, this distance is trivial to compute.
 But a large and growing share of substantively important actors --- rebel
 groups, militias, terrorist organizations, peacekeeping deployments,
-non-governmental organizations --- are mobile, and treating them as
-fixed-location entities discards exactly the spatial dynamics that drive their
-interactions. Prior to PALS there was no general, estimable method for assigning
-time-varying locations to such actors in a way that is optimized for predicting
-their interactions.
+non-governmental organizations --- are mobile. The fine-grained, geocoded event
+data that now document them, such as the Armed Conflict Location and Event Data
+project [@acled], record *where each interaction happened* but assign actors no
+persistent coordinates. Treating these actors as fixed-location entities
+discards exactly the spatial dynamics that drive their interactions.
+
+Existing spatial software for R does not fill this gap. General geospatial
+toolkits such as `sf` [@sf] and spatial point-process libraries such as
+`spatstat` [@spatstat] are powerful, but they operate on objects with given
+coordinates; they provide no way to *infer* a moving actor's effective location,
+let alone one tuned to predict future interactions. Conversely, dyadic
+interaction models in political science and economics typically take inter-actor
+distance as an exogenous input. Prior to PALS there was thus no general,
+estimable method for assigning time-varying locations to mobile actors in a way
+that is optimized for predicting their interactions.
 
 PALS addresses this need, and the original article [@kim2023pals] demonstrates
 that PALS-based distances substantially improve the prediction of subnational
@@ -92,15 +102,24 @@ g_i(t) = (1-\pi)\sum_e W_i(e)\, g(e) \;+\; \pi \sum_e W_k(e)\, g(e),
 \qquad \pi = \mathrm{logistic}(\gamma + \eta\, v),
 $$
 
-where event weights decay with age --- governed by $\alpha$ for the focal actor
-and $\beta$ for the alters --- and the mixing weight $\pi$ depends through
-$\gamma$ and $\eta$ on the focal actor's activity relative to its alters,
-summarized by the event-count statistic $v$. The four parameters are estimated
-by "marching forward" through time: every event is predicted using only events
-strictly preceding it, and parameters are chosen to minimize the mean Haversine
-distance between predicted and observed interaction locations. The package also
-exposes a parsimonious one-parameter variant that fixes $\pi = 0$ and estimates
-only $\alpha$, which is fast and frequently competitive.
+where event weights decay with age in the manner of exponential smoothing
+[@gardner2006] --- governed by $\alpha$ for the focal actor and $\beta$ for the
+alters --- and the mixing weight $\pi$ depends through $\gamma$ and $\eta$ on the
+focal actor's activity relative to its alters, summarized by the event-count
+statistic $v$. The four parameters are estimated by "marching forward" through
+time: every event is predicted using only events strictly preceding it, and
+parameters are chosen to minimize the mean Haversine distance between predicted
+and observed interaction locations. The package also exposes a parsimonious
+one-parameter variant that fixes $\pi = 0$ and estimates only $\alpha$, which is
+fast and frequently competitive.
+
+Because the projected location is recomputed as time advances, each actor traces
+a *trajectory* through space rather than occupying a fixed point.
+\autoref{fig:traj} illustrates this for four actors in the bundled simulated
+data: PALS projects each actor's location at yearly intervals, and the resulting
+paths drift through the cloud of observed events.
+
+![Projected locations of four actors in the simulated `nigeria_sim` data, fit with the one-parameter model and projected at yearly intervals from 2005 to 2016. Grey points are the observed dyadic events; coloured paths trace each actor's PALS-projected trajectory (arrows point forward in time). \label{fig:traj}](figure-trajectories.png){ width=85% }
 
 # Key features
 
@@ -140,10 +159,20 @@ pal_distance(nigeria_sim, dyads, fit, transform = "log")
 summary(bootstrap_pals(nigeria_sim, R = 10, model = "one", seed = 1))
 ```
 
+# Availability and quality control
+
+`palsr` is developed openly on GitHub. The package ships with documentation for
+every exported function, an introductory vignette that walks through the full
+workflow on `nigeria_sim`, and a `testthat` suite covering data validation,
+estimation, projection, distance construction, and uncertainty quantification.
+The tests additionally verify the compiled C++ kernels against independent
+pure-R reference implementations, and continuous integration runs `R CMD check`
+across Linux, macOS, and Windows on every change.
+
 # Acknowledgements
 
 We thank the editors and reviewers of *Political Science Research and Methods*
-for feedback on the method, and the developers of `Rcpp` for the tooling that
-underpins the package's performance.
+for feedback on the method, and the developers of `Rcpp` [@rcpp] for the tooling
+that underpins the package's performance.
 
 # References

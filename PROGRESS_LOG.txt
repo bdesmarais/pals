@@ -120,3 +120,35 @@ Follow-ups for authors before formal submission:
 - Built paper/paper.tex and paper/paper.pdf: correct JOSS layout — title, author
   affiliation superscripts (Desmarais^1, Kim^2, Liu^3), JOSS footer, inline citations,
   and a formatted reference list. Tracked both in git for review; LaTeX aux files ignored.
+
+- Renamed the GitHub repo bdesmarais/pals -> bdesmarais/palsr (gh repo rename) for
+  consistency with the package; git remote updated automatically (GitHub redirects
+  the old URL). All in-repo URLs (DESCRIPTION, README badge, install_github) now
+  point to bdesmarais/palsr. Pushed; origin/main in sync.
+- Running a final clean R CMD check after all renames/moves.
+
+=== JOSS PEER BENCHMARK + PAPER IMPROVEMENTS (2026-06-13) ===
+- Downloaded 21 accepted JOSS paper.md sources (R-primary methods/stats packages:
+  dySEM [dyadic!], conmat, simulist, baysc, gkwreg, BayCauRETM, ecodive, etc.) via
+  the JOSS API and analyzed structure: median ~1190 words, median 15 citations;
+  near-universal sections Summary / Statement of need / References / Acknowledgements;
+  common extras: explicit "state of the field" w/ software comparison, a figure
+  (most strong papers have >=1), Availability/quality-control notes.
+- Gap analysis vs. our paper (was 790 words, 5 cites, 0 figures):
+    1. too few citations & no comparison to existing software -> FIXED
+    2. no figure -> FIXED
+    3. no availability/QC section -> FIXED
+    4. slightly short -> FIXED (now 1029 words)
+- Changes to paper/paper.md:
+    * Added Figure 1: PALS-projected trajectories of 4 actors over nigeria_sim event
+      cloud (paper/make_figure.R -> paper/figure-trajectories.png), referenced via
+      \autoref. Shows the core "moving actors" idea visually.
+    * Rewrote Statement of need with an explicit state-of-the-field: existing R
+      spatial tooling (sf, spatstat) assumes fixed coordinates; conflict event data
+      (ACLED) geocode events but not actors; positioned PALS as filling the gap.
+    * Cited exponential-smoothing literature (Gardner 2006) in the Method.
+    * Added "Availability and quality control" section (docs, vignette, tests,
+      C++-vs-R kernel checks, multi-OS CI).
+    * Cited R itself and Rcpp.
+  Citations 5 -> 10 (all web-verified DOIs: rcoreteam, acled/Raleigh2010, sf/Pebesma2018,
+  spatstat/Baddeley-Turner2005, gardner2006). Rebuilt paper.tex + paper.pdf cleanly.

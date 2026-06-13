@@ -389,13 +389,13 @@ spatiotemporal history of its past interactions, and using these
 projected locations to model the distance between --- and the
 probability of interaction among --- pairs of actors.
 
-\texttt{palsr} is an R package that implements the complete PALS
-workflow: constructing and validating dyadic event data, estimating the
-smoothing parameters by minimizing great-circle prediction error,
-projecting actor locations at arbitrary times, building the dyadic
-distance covariates used in downstream interaction models, and
-quantifying uncertainty through a nonparametric bootstrap with
-multiple-imputation (Rubin's Rules) pooling. Performance-critical
+\texttt{palsr} is an R package (R Core Team 2024) that implements the
+complete PALS workflow: constructing and validating dyadic event data,
+estimating the smoothing parameters by minimizing great-circle
+prediction error, projecting actor locations at arbitrary times,
+building the dyadic distance covariates used in downstream interaction
+models, and quantifying uncertainty through a nonparametric bootstrap
+with multiple-imputation (Rubin's Rules) pooling. Performance-critical
 kernels --- the Haversine distance and the projection smoother --- are
 implemented in C++ through \texttt{Rcpp} (Eddelbuettel 2013), so that
 parameter estimation, which repeatedly re-projects every actor across a
@@ -411,11 +411,24 @@ two actors interact is the distance between them (Gleditsch and Ward
 centroids, this distance is trivial to compute. But a large and growing
 share of substantively important actors --- rebel groups, militias,
 terrorist organizations, peacekeeping deployments, non-governmental
-organizations --- are mobile, and treating them as fixed-location
-entities discards exactly the spatial dynamics that drive their
-interactions. Prior to PALS there was no general, estimable method for
-assigning time-varying locations to such actors in a way that is
-optimized for predicting their interactions.
+organizations --- are mobile. The fine-grained, geocoded event data that
+now document them, such as the Armed Conflict Location and Event Data
+project (Raleigh et al. 2010), record \emph{where each interaction
+happened} but assign actors no persistent coordinates. Treating these
+actors as fixed-location entities discards exactly the spatial dynamics
+that drive their interactions.
+
+Existing spatial software for R does not fill this gap. General
+geospatial toolkits such as \texttt{sf} (Pebesma 2018) and spatial
+point-process libraries such as \texttt{spatstat} (Baddeley and Turner
+2005) are powerful, but they operate on objects with given coordinates;
+they provide no way to \emph{infer} a moving actor's effective location,
+let alone one tuned to predict future interactions. Conversely, dyadic
+interaction models in political science and economics typically take
+inter-actor distance as an exogenous input. Prior to PALS there was thus
+no general, estimable method for assigning time-varying locations to
+mobile actors in a way that is optimized for predicting their
+interactions.
 
 PALS addresses this need, and the original article (Kim et al. 2023)
 demonstrates that PALS-based distances substantially improve the
@@ -446,16 +459,34 @@ g_i(t) = (1-\pi)\sum_e W_i(e)\, g(e) \;+\; \pi \sum_e W_k(e)\, g(e),
 \qquad \pi = \mathrm{logistic}(\gamma + \eta\, v),
 \]
 
-where event weights decay with age --- governed by \(\alpha\) for the
-focal actor and \(\beta\) for the alters --- and the mixing weight
-\(\pi\) depends through \(\gamma\) and \(\eta\) on the focal actor's
-activity relative to its alters, summarized by the event-count statistic
-\(v\). The four parameters are estimated by ``marching forward'' through
-time: every event is predicted using only events strictly preceding it,
-and parameters are chosen to minimize the mean Haversine distance
-between predicted and observed interaction locations. The package also
-exposes a parsimonious one-parameter variant that fixes \(\pi = 0\) and
-estimates only \(\alpha\), which is fast and frequently competitive.
+where event weights decay with age in the manner of exponential
+smoothing (Gardner Jr. 2006) --- governed by \(\alpha\) for the focal
+actor and \(\beta\) for the alters --- and the mixing weight \(\pi\)
+depends through \(\gamma\) and \(\eta\) on the focal actor's activity
+relative to its alters, summarized by the event-count statistic \(v\).
+The four parameters are estimated by ``marching forward'' through time:
+every event is predicted using only events strictly preceding it, and
+parameters are chosen to minimize the mean Haversine distance between
+predicted and observed interaction locations. The package also exposes a
+parsimonious one-parameter variant that fixes \(\pi = 0\) and estimates
+only \(\alpha\), which is fast and frequently competitive.
+
+Because the projected location is recomputed as time advances, each
+actor traces a \emph{trajectory} through space rather than occupying a
+fixed point. \autoref{fig:traj} illustrates this for four actors in the
+bundled simulated data: PALS projects each actor's location at yearly
+intervals, and the resulting paths drift through the cloud of observed
+events.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio,alt={Projected locations of four actors in the simulated nigeria\_sim data, fit with the one-parameter model and projected at yearly intervals from 2005 to 2016. Grey points are the observed dyadic events; coloured paths trace each actor's PALS-projected trajectory (arrows point forward in time). }]{figure-trajectories.png}
+\caption{Projected locations of four actors in the simulated
+\protect\texttt{nigeria\_sim} data, fit with the one-parameter model and
+projected at yearly intervals from 2005 to 2016. Grey points are the
+observed dyadic events; coloured paths trace each actor's PALS-projected
+trajectory (arrows point forward in time). \label{fig:traj}}
+\end{figure}
 
 \section{Key features}\label{key-features}
 
@@ -509,20 +540,43 @@ estimates only \(\alpha\), which is fast and frequently competitive.
 \end{Highlighting}
 \end{Shaded}
 
+\section{Availability and quality
+control}\label{availability-and-quality-control}
+
+\texttt{palsr} is developed openly on GitHub. The package ships with
+documentation for every exported function, an introductory vignette that
+walks through the full workflow on \texttt{nigeria\_sim}, and a
+\texttt{testthat} suite covering data validation, estimation,
+projection, distance construction, and uncertainty quantification. The
+tests additionally verify the compiled C++ kernels against independent
+pure-R reference implementations, and continuous integration runs
+\texttt{R\ CMD\ check} across Linux, macOS, and Windows on every change.
+
 \section{Acknowledgements}\label{acknowledgements}
 
 We thank the editors and reviewers of \emph{Political Science Research
 and Methods} for feedback on the method, and the developers of
-\texttt{Rcpp} for the tooling that underpins the package's performance.
+\texttt{Rcpp} (Eddelbuettel 2013) for the tooling that underpins the
+package's performance.
 
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
 
 \protect\phantomsection\label{refs}
 \begin{CSLReferences}{1}{1}
+\bibitem[\citeproctext]{ref-spatstat}
+Baddeley, Adrian, and Rolf Turner. 2005. {``Spatstat: An {R} Package for
+Analyzing Spatial Point Patterns.''} \emph{Journal of Statistical
+Software} 12 (6): 1--42. \url{https://doi.org/10.18637/jss.v012.i06}.
+
 \bibitem[\citeproctext]{ref-rcpp}
 Eddelbuettel, Dirk. 2013. \emph{Seamless {R} and {C++} Integration with
 {Rcpp}}. Springer. \url{https://doi.org/10.1007/978-1-4614-6868-4}.
+
+\bibitem[\citeproctext]{ref-gardner2006}
+Gardner Jr., Everette S. 2006. {``Exponential Smoothing: The State of
+the Art---Part {II}.''} \emph{International Journal of Forecasting} 22
+(4): 637--66. \url{https://doi.org/10.1016/j.ijforecast.2006.03.005}.
 
 \bibitem[\citeproctext]{ref-gleditsch2001}
 Gleditsch, Kristian S., and Michael D. Ward. 2001. {``Measuring Space: A
@@ -535,6 +589,22 @@ Kim, Sangyeon, Howard Liu, and Bruce A. Desmarais. 2023. {``Spatial
 Modeling of Dyadic Geopolitical Interactions Between Moving Actors.''}
 \emph{Political Science Research and Methods} 11 (3): 617--35.
 \url{https://doi.org/10.1017/psrm.2022.6}.
+
+\bibitem[\citeproctext]{ref-sf}
+Pebesma, Edzer. 2018. {``Simple Features for {R}: Standardized Support
+for Spatial Vector Data.''} \emph{The R Journal} 10 (1): 439--46.
+\url{https://doi.org/10.32614/RJ-2018-009}.
+
+\bibitem[\citeproctext]{ref-rcoreteam}
+R Core Team. 2024. \emph{R: A Language and Environment for Statistical
+Computing}. R Foundation for Statistical Computing.
+\url{https://www.R-project.org/}.
+
+\bibitem[\citeproctext]{ref-acled}
+Raleigh, Clionadh, Andrew Linke, Håvard Hegre, and Joakim Karlsen. 2010.
+{``Introducing {ACLED}: An Armed Conflict Location and Event Dataset.''}
+\emph{Journal of Peace Research} 47 (5): 651--60.
+\url{https://doi.org/10.1177/0022343310378914}.
 
 \bibitem[\citeproctext]{ref-rubin1987}
 Rubin, Donald B. 1987. \emph{Multiple Imputation for Nonresponse in
