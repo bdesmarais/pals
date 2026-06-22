@@ -36,3 +36,7 @@ paper/*.fdb_latexmk
 
 # Machine-specific local env
 .Renviron
+
+# paper biber/latex artifacts
+paper/*.bcf
+paper/*.run.xml

@@ -140,6 +140,35 @@ ggplot(pal_2015, aes(lon, lat)) +
   theme_minimal()
 ```
 
+Because the projection is recomputed as time advances, each actor traces a
+*trajectory* through space. Projecting a few actors at yearly intervals and
+drawing their paths over the cloud of observed events shows how PALS captures
+mobile actors drifting through the theatre:
+
+```{r trajectory-map, fig.width = 7, fig.height = 4.5, fig.alt = "Projected trajectories of four actors over 2005-2016"}
+actors <- c("G03", "G08", "G14", "G21")
+dates  <- as.Date(sprintf("%d-01-01", seq(2005, 2016)))
+traj   <- project_pals(nigeria_sim, actors = actors,
+                       predict_time = dates, params = fit1)
+traj   <- traj[!is.na(traj$lon), ]
+ends   <- do.call(rbind, lapply(split(traj, traj$actor),
+                                function(d) d[which.max(d$time), ]))
+
+ggplot() +
+  geom_point(data = nigeria_sim, aes(lon, lat),
+             colour = "grey80", size = 0.5, alpha = 0.5) +
+  geom_path(data = traj, aes(lon, lat, colour = actor), linewidth = 0.8,
+            arrow = grid::arrow(length = grid::unit(0.18, "cm"), type = "closed")) +
+  geom_point(data = traj, aes(lon, lat, colour = actor), size = 1.6) +
+  geom_text(data = ends, aes(lon, lat, colour = actor, label = actor),
+            nudge_y = 0.35, size = 3, show.legend = FALSE) +
+  scale_colour_brewer(palette = "Dark2", name = "Actor") +
+  labs(title = "Projected actor trajectories, 2005-2016",
+       x = "Longitude", y = "Latitude") +
+  coord_quickmap() +
+  theme_minimal()
+```
+
 ### Predicting interaction locations and dyadic distances
 
 The predicted location of an interaction between two actors is the mean of

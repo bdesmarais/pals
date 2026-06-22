@@ -143,6 +143,11 @@ data(nigeria_acled)   # 1,549 ACLED conflict events (Nigeria)
 fit <- estimate_pals(nigeria_acled, model = "one")   # estimate alpha
 coef(fit)
 
+# The full four-parameter model also weights the alters' histories
+# (alpha, beta, gamma, eta).
+fit4 <- estimate_pals(nigeria_acled, model = "four")
+coef(fit4)
+
 # Project where each actor is on a given date.
 project_pals(nigeria_acled,
              predict_time = as.Date("2015-12-01"),

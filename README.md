@@ -21,7 +21,7 @@ actor's own history with that of its interaction partners ("alters").
 ## Installation
 
 ```r
-# install.packages("remotes")
+install.packages("remotes")   # if not already installed
 remotes::install_github("bdesmarais/palsr")
 ```
 

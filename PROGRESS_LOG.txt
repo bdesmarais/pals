@@ -152,3 +152,16 @@ Follow-ups for authors before formal submission:
     * Cited R itself and Rcpp.
   Citations 5 -> 10 (all web-verified DOIs: rcoreteam, acled/Raleigh2010, sf/Pebesma2018,
   spatstat/Baddeley-Turner2005, gardner2006). Rebuilt paper.tex + paper.pdf cleanly.
+
+=== HOWARD'S REVIEW APPLIED (2026-06-22) ===
+Read Howard Liu's review email (thread "PALS software package (palsr) — review +
+authorship for a JOSS submission"). He was happy with length, method accuracy, and
+results; made three suggestions. Applied them on top of Bruce's own review commits
+(0ac437a/fadb919, which added the real nigeria_acled example + NSF funding):
+  1. Paper Example now also shows the full four-parameter estimate
+     (estimate_pals(nigeria_acled, model = "four"); coef(fit4)). Rebuilt paper.pdf/.tex.
+  2. Vignette: added a projected-trajectory map (four actors projected at yearly
+     intervals 2005-2016 over the event cloud) alongside the existing single-date map.
+  3. README: uncommented install.packages("remotes") in the install instructions.
+NSF acknowledgment was already present (added by Bruce). Vignette renders clean;
+full testthat suite passes.
