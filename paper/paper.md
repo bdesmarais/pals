@@ -9,10 +9,13 @@ tags:
   - exponential smoothing
 authors:
   - name: Sangyeon Kim
+    orcid: 0000-0001-9105-8598
     affiliation: 1
   - name: Howard Liu
+    orcid: 0000-0002-3479-9864
     affiliation: 2
   - name: Bruce A. Desmarais
+    orcid: 0000-0002-3031-8883
     corresponding: true
     affiliation: 3
 affiliations:
@@ -177,10 +180,15 @@ across Linux, macOS, and Windows on every change.
 
 # Acknowledgements
 
-This work was supported by the U.S. National Science Foundation under the
-collaborative project "Georelational Dynamics in Collective Action" (awards 2446647
-to B.A.D. and 2446646 to H.L.). We thank the editors and reviewers of *Political
-Science Research and Methods* for feedback on the method, and the developers of
-`Rcpp` [@rcpp] for the tooling that underpins the package's performance.
+This material is based upon work supported by the U.S. National Science
+Foundation. The development of PALS and this software was supported by the
+collaborative project "Georelational Dynamics in Collective Action" (awards
+2446647 to B.A.D. and 2446646 to H.L.). B.A.D. additionally acknowledges support
+from NSF awards 2449569 ("Belief Systems Governing Climate Adaptation Behaviors:
+Inference, Analysis, and Intervention") and 2318460 ("HNDS-I: Digitally
+Accountable Public Representation"). We thank the editors and reviewers of
+*Political Science Research and Methods* for feedback on the method, and the
+developers of `Rcpp` [@rcpp] for the tooling that underpins the package's
+performance.
 
 # References

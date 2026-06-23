@@ -165,3 +165,17 @@ results; made three suggestions. Applied them on top of Bruce's own review commi
   3. README: uncommented install.packages("remotes") in the install instructions.
 NSF acknowledgment was already present (added by Bruce). Vignette renders clean;
 full testthat suite passes.
+
+=== JOSS SUBMISSION PREP (2026-06-22) ===
+- Tracked down Bruce's ACTIVE NSF awards via the NSF awards API (PI=Bruce Desmarais):
+  2446647 (Georelational Dynamics in Collective Action, exp 2027-08-31, on-topic),
+  2449569 (Belief Systems/Climate Adaptation, exp 2027-05-31),
+  2318460 (HNDS-I: Digitally Accountable Public Representation, exp 2026-08-31).
+  (2446646 = Howard's collaborative counterpart at USC.) Expanded paper Acknowledgements
+  to credit all of them, with the on-topic award as primary support.
+- Added author ORCIDs (affiliation-corroborated): Kim 0000-0001-9105-8598 (Ewha),
+  Liu 0000-0002-3479-9864 (USC), Desmarais 0000-0002-3031-8883 (PSU).
+- Added CONTRIBUTING.md (JOSS community-guidelines requirement) + README section;
+  added inst/CITATION (PSRM method paper). R CMD check: Status: OK.
+- JOSS submission form (joss.theoj.org/papers/new) requires ORCID/GitHub login;
+  Bruce is not logged in, so final submit is gated on him. Prepared everything else.

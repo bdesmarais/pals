@@ -1,0 +1,21 @@
+citHeader("To cite palsr in publications, please cite the method paper:")
+
+bibentry(
+  bibtype  = "Article",
+  title    = "Spatial modeling of dyadic geopolitical interactions between moving actors",
+  author   = c(person("Sangyeon", "Kim"),
+               person("Howard", "Liu"),
+               person(c("Bruce", "A."), "Desmarais")),
+  journal  = "Political Science Research and Methods",
+  year     = "2023",
+  volume   = "11",
+  number   = "3",
+  pages    = "617--635",
+  doi      = "10.1017/psrm.2022.6",
+  textVersion = paste(
+    "Kim, S., Liu, H., & Desmarais, B. A. (2023).",
+    "Spatial modeling of dyadic geopolitical interactions between moving actors.",
+    "Political Science Research and Methods, 11(3), 617-635.",
+    "doi:10.1017/psrm.2022.6"
+  )
+)

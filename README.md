@@ -130,6 +130,13 @@ If you use **palsr**, please cite the method paper:
 > geopolitical interactions between moving actors. *Political Science Research
 > and Methods*, 11(3), 617–635. https://doi.org/10.1017/psrm.2022.6
 
+## Contributing and support
+
+Bug reports, questions, and contributions are welcome. Please see
+[CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting issues,
+contributing code, and seeking support, and use the
+[issue tracker](https://github.com/bdesmarais/palsr/issues) to get in touch.
+
 ## License
 
 MIT © the package authors.
