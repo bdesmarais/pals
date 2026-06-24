@@ -6,8 +6,8 @@
 #' actors over 2000-2016, with the qualitative spatiotemporal structure that the PALS
 #' method targets: actors drift slowly through space and interact preferentially with
 #' nearby actors. It is produced by [simulate_conflict_events()] and is used in the
-#' package examples, tests, and vignette so that they run without external data.
-#' ACLED conflict data, used in the original application, are not redistributable.
+#' package examples, tests, and vignette so that they run without any external
+#' dependency. It complements [nigeria_acled], the bundled real-data example.
 #'
 #' @format A [pal_events] object (a `data.frame` subclass) with 1500 rows and 5
 #'   columns:
@@ -30,12 +30,12 @@
 #' coef(fit)
 "nigeria_sim"
 
-#' Subnational conflict events in Nigeria (ACLED)
+#' Subnational conflict events in Nigeria
 #'
-#' Real dyadic conflict events from the Armed Conflict Location and Event Data project
-#' (ACLED) for Nigeria, as used in Kim, Liu and Desmarais (2023). Each row is a recorded
-#' interaction between two actors at a known date and location; this is the data the PALS
-#' method was developed and validated on.
+#' Real dyadic conflict events in Nigeria from the public replication archive for
+#' Kim, Liu and Desmarais (2023). Each row is a recorded interaction between two actors
+#' at a known date and location; this is the data the PALS method was developed and
+#' validated on.
 #'
 #' @format A [pal_events] object (a `data.frame` subclass) with 1,549 rows and 5 columns:
 #' \describe{
@@ -46,9 +46,8 @@
 #'   \item{lat}{Event latitude (decimal degrees).}
 #' }
 #'
-#' @source Armed Conflict Location and Event Data project (ACLED), via the replication
-#'   archive for Kim, Liu and Desmarais (2023), Harvard Dataverse,
-#'   \doi{10.7910/DVN/NLWWPE}. ACLED data are subject to ACLED's terms of use.
+#' @source Public replication archive for Kim, Liu and Desmarais (2023), Harvard
+#'   Dataverse, \doi{10.7910/DVN/NLWWPE}.
 #'
 #' @references Kim, S., Liu, H., and Desmarais, B. A. (2023). Spatial modeling of dyadic
 #'   geopolitical interactions between moving actors. *Political Science Research and

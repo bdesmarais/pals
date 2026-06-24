@@ -2,7 +2,7 @@
 #
 # A deterministic, seeded simulation of dyadic conflict events among mobile actors
 # in a Nigeria-like geographic frame. Used in examples, tests, and the vignette so
-# the package is fully self-contained (ACLED data are not redistributable).
+# they run with no external dependency, alongside the real `nigeria_acled` data.
 #
 # Run with:  source("data-raw/nigeria_sim.R")  (from the package root, with the
 # package loaded via devtools::load_all()).

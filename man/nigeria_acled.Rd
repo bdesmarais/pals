@@ -3,7 +3,7 @@
 \docType{data}
 \name{nigeria_acled}
 \alias{nigeria_acled}
-\title{Subnational conflict events in Nigeria (ACLED)}
+\title{Subnational conflict events in Nigeria}
 \format{
 A \link{pal_events} object (a \code{data.frame} subclass) with 1,549 rows and 5 columns:
 \describe{
@@ -15,18 +15,17 @@ A \link{pal_events} object (a \code{data.frame} subclass) with 1,549 rows and 5 
 }
 }
 \source{
-Armed Conflict Location and Event Data project (ACLED), via the replication
-archive for Kim, Liu and Desmarais (2023), Harvard Dataverse,
-\doi{10.7910/DVN/NLWWPE}. ACLED data are subject to ACLED's terms of use.
+Public replication archive for Kim, Liu and Desmarais (2023), Harvard
+Dataverse, \doi{10.7910/DVN/NLWWPE}.
 }
 \usage{
 nigeria_acled
 }
 \description{
-Real dyadic conflict events from the Armed Conflict Location and Event Data project
-(ACLED) for Nigeria, as used in Kim, Liu and Desmarais (2023). Each row is a recorded
-interaction between two actors at a known date and location; this is the data the PALS
-method was developed and validated on.
+Real dyadic conflict events in Nigeria from the public replication archive for
+Kim, Liu and Desmarais (2023). Each row is a recorded interaction between two actors
+at a known date and location; this is the data the PALS method was developed and
+validated on.
 }
 \examples{
 data(nigeria_acled)

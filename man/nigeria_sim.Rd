@@ -27,8 +27,8 @@ A deterministic, seeded simulation of dyadic interaction events among 25 mobile
 actors over 2000-2016, with the qualitative spatiotemporal structure that the PALS
 method targets: actors drift slowly through space and interact preferentially with
 nearby actors. It is produced by \code{\link[=simulate_conflict_events]{simulate_conflict_events()}} and is used in the
-package examples, tests, and vignette so that they run without external data.
-ACLED conflict data, used in the original application, are not redistributable.
+package examples, tests, and vignette so that they run without any external
+dependency. It complements \link{nigeria_acled}, the bundled real-data example.
 }
 \examples{
 data(nigeria_sim)

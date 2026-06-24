@@ -73,8 +73,9 @@ estimates $\alpha$ alone; it is fast and surprisingly competitive.
 ## A worked example
 
 The package ships a deterministic simulated dataset, `nigeria_sim`, of 1,500
-dyadic conflict events among 25 mobile actors between 2000 and 2016. (The
-original application uses ACLED data, which are not redistributable.)
+dyadic conflict events among 25 mobile actors between 2000 and 2016, so that
+examples run identically everywhere. The bundled `nigeria_acled` dataset provides
+the real events from the replication archive of Kim, Liu and Desmarais (2023).
 
 ```{r data}
 data(nigeria_sim)
