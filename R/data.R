@@ -26,8 +26,10 @@
 #' @examples
 #' data(nigeria_sim)
 #' nigeria_sim
+#' \donttest{
 #' fit <- estimate_pals(nigeria_sim, model = "one")
 #' coef(fit)
+#' }
 "nigeria_sim"
 
 #' Subnational conflict events in Nigeria
@@ -39,7 +41,7 @@
 #'
 #' These data are part of the publicly available replication materials for that
 #' study and can be downloaded directly from the Harvard Dataverse at
-#' \doi{10.7910/DVN/NLWWPE} (<https://doi.org/10.7910/DVN/NLWWPE>).
+#' \doi{10.7910/DVN/NLWWPE}.
 #'
 #' @format A [pal_events] object (a `data.frame` subclass) with 1,549 rows and 5 columns:
 #' \describe{
@@ -60,6 +62,8 @@
 #' @examples
 #' data(nigeria_acled)
 #' nigeria_acled
+#' \donttest{
 #' fit <- estimate_pals(nigeria_acled, model = "one")
 #' coef(fit)
+#' }
 "nigeria_acled"

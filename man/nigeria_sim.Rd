@@ -33,7 +33,9 @@ dependency. It complements \link{nigeria_acled}, the bundled real-data example.
 \examples{
 data(nigeria_sim)
 nigeria_sim
+\donttest{
 fit <- estimate_pals(nigeria_sim, model = "one")
 coef(fit)
+}
 }
 \keyword{datasets}

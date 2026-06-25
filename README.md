@@ -133,7 +133,8 @@ If you use **palsr**, please cite the method paper:
 ## Contributing and support
 
 Bug reports, questions, and contributions are welcome. Please see
-[CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting issues,
+[CONTRIBUTING.md](https://github.com/bdesmarais/palsr/blob/main/CONTRIBUTING.md)
+for guidelines on reporting issues,
 contributing code, and seeking support, and use the
 [issue tracker](https://github.com/bdesmarais/palsr/issues) to get in touch.
 

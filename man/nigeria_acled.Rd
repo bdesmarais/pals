@@ -30,13 +30,15 @@ which the PALS method was developed and validated.
 \details{
 These data are part of the publicly available replication materials for that
 study and can be downloaded directly from the Harvard Dataverse at
-\doi{10.7910/DVN/NLWWPE} (\url{https://doi.org/10.7910/DVN/NLWWPE}).
+\doi{10.7910/DVN/NLWWPE}.
 }
 \examples{
 data(nigeria_acled)
 nigeria_acled
+\donttest{
 fit <- estimate_pals(nigeria_acled, model = "one")
 coef(fit)
+}
 }
 \references{
 Kim, S., Liu, H., and Desmarais, B. A. (2023). Spatial modeling of dyadic
