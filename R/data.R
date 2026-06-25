@@ -32,10 +32,14 @@
 
 #' Subnational conflict events in Nigeria
 #'
-#' Real dyadic conflict events in Nigeria from the public replication archive for
-#' Kim, Liu and Desmarais (2023). Each row is a recorded interaction between two actors
-#' at a known date and location; this is the data the PALS method was developed and
-#' validated on.
+#' Real dyadic conflict events in Nigeria, bundled from the replication archive for
+#' the authors' study, Kim, Liu and Desmarais (2023). Each row is a recorded
+#' interaction between two actors at a known date and location; this is the data on
+#' which the PALS method was developed and validated.
+#'
+#' These data are part of the publicly available replication materials for that
+#' study and can be downloaded directly from the Harvard Dataverse at
+#' \doi{10.7910/DVN/NLWWPE} (<https://doi.org/10.7910/DVN/NLWWPE>).
 #'
 #' @format A [pal_events] object (a `data.frame` subclass) with 1,549 rows and 5 columns:
 #' \describe{

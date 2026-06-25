@@ -22,10 +22,15 @@ Dataverse, \doi{10.7910/DVN/NLWWPE}.
 nigeria_acled
 }
 \description{
-Real dyadic conflict events in Nigeria from the public replication archive for
-Kim, Liu and Desmarais (2023). Each row is a recorded interaction between two actors
-at a known date and location; this is the data the PALS method was developed and
-validated on.
+Real dyadic conflict events in Nigeria, bundled from the replication archive for
+the authors' study, Kim, Liu and Desmarais (2023). Each row is a recorded
+interaction between two actors at a known date and location; this is the data on
+which the PALS method was developed and validated.
+}
+\details{
+These data are part of the publicly available replication materials for that
+study and can be downloaded directly from the Harvard Dataverse at
+\doi{10.7910/DVN/NLWWPE} (\url{https://doi.org/10.7910/DVN/NLWWPE}).
 }
 \examples{
 data(nigeria_acled)
