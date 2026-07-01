@@ -2,9 +2,8 @@
 #   "palsr: Projecting the Locations of Moving Actors for Spatial Models of
 #    Dyadic Interaction"
 #
-# Requires the palsr package (https://github.com/bdesmarais/palsr) and ggplot2.
-#   install.packages("remotes")
-#   remotes::install_github("bdesmarais/palsr")
+# Requires the palsr package (on CRAN) and ggplot2.
+#   install.packages("palsr")
 
 library(palsr)
 library(ggplot2)
